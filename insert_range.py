@@ -7,7 +7,7 @@ def check_params():
     return sys.argv[1], sys.argv[2]
 
 def edit_notebook(start, end):
-    with open('test.ipynb') as f:
+    with open('e10sMulti_experiment.ipynb') as f:
         notebook = json.loads(f.read())
 
     for i in range(len(notebook['cells'])):
