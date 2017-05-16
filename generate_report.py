@@ -1,5 +1,6 @@
 import sys
 import re
+import os
 
 target_week = int(re.sub('[a-z]', '', sys.argv[1]))
 weeks = ['week' + str(i) for i in range(1, target_week+1)][::-1]
@@ -33,6 +34,7 @@ def any_keywords(line):
 
 
 def reformat_report(filename, directory):
+	os.system("mkdir data/{} && mv e10sMuti* data/{}/".format('week' + str(target_week)))
 	path = '/'.join([directory, filename])
 	with open(path) as f:
 		current_html = ''
