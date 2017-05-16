@@ -17,19 +17,19 @@ cd telemetry-batch-view && sbt assembly
 
 
 
-# echo RUNNING ETL
-# # submit ETL job
-# spark-submit\
-#     --master yarn\
-#     --deploy-mode client\
-#     --class com.mozilla.telemetry.views.E10sExperimentView\
-#     target/scala-2.11/telemetry-batch-view-1.1.jar\
-#     --from $start\
-#     --to $end\
-#     --channel beta\
-#     --version 54.0\
-#     --experiment multi-webExtensions-beta54-cohorts\
-#     --bucket telemetry-parquet
+echo RUNNING ETL
+# submit ETL job
+spark-submit\
+    --master yarn\
+    --deploy-mode client\
+    --class com.mozilla.telemetry.views.E10sExperimentView\
+    target/scala-2.11/telemetry-batch-view-1.1.jar\
+    --from $start\
+    --to $end\
+    --channel beta\
+    --version 54.0\
+    --experiment multi-webExtensions-beta54-cohorts\
+    --bucket telemetry-parquet
 
 
 echo CONFIGURING ANALYSIS FOR $week
@@ -55,10 +55,17 @@ PYSPARK_DRIVER_PYTHON=jupyter
 PYSPARK_DRIVER_PYTHON_OPTS="nbconvert --ExecutePreprocessor.kernel_name=python2 --ExecutePreprocessor.timeout=-1 --log-level=10 --execute e10sMulti_experiment.ipynb --to html --output-dir ./html/" \
 pyspark
 
-# copy html files to s3
-aws s3 cp --recursive ./html s3://telemetry-test-bucket/e10s_experiment_view/multi_webExtensions_beta54_cohorts/$week-html
+aws s3 cp --recursive s3://telemetry-test-bucket/bmiroglio/multi-report/ /mnt
 
+mkdir /mnt/data/$week
+mv *.html /mnt/data/$week/
+cd /mnt
+python /mnt/temp-aws-tools/generate_report.py $week
 
+# render notebook
+Rscript -e "rmarkdown::render('multi-new.Rmd')"
+
+aws s3 cp multi-new.html s3://telemetry-test-bucket/bmiroglio/reports/
 
 
 
