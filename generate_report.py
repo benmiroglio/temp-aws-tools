@@ -34,7 +34,6 @@ def any_keywords(line):
 
 
 def reformat_report(filename, directory):
-	os.system("mkdir data/{} && mv e10sMuti* data/{}/".format('week' + str(target_week)))
 	path = '/'.join([directory, filename])
 	with open(path) as f:
 		current_html = ''
