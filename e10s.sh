@@ -4,7 +4,10 @@ end="$3"
 
 echo "CLONING REPOS"
 # clone repos to /mnt
-cd /mnt && git clone https://github.com/mozilla/telemetry-batch-view.git && git clone https://github.com/benmiroglio/temp-aws-tools.git
+cd /mnt
+git clone https://github.com/mozilla/telemetry-batch-view.git
+git clone https://github.com/benmiroglio/temp-aws-tools.git
+git clone https://github.com/benmiroglio/e10s_analyses.git 
 
 # update e10s script
 # (handles edge case for JNothing Error and grabs the submission field)
