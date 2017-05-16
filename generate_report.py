@@ -66,7 +66,7 @@ with open('multi-new.Rmd', 'w') as new_report:
 	header =  get_text("/mnt/temp-aws-tools/header-markdown-template.md")
 	new_report.write(header)
 	for week in weeks:
-		reformat_report('e10sMulti_experiment.html', 'data/{}'.format(week))
+		reformat_report('e10sMulti_experiment.html', 'data/%s' % week)
 		week_body = re.sub("{}", week, get_text("/mnt/temp-aws-tools/weekx-markdown-template.md"))
 		new_report.write(week_body)
 
