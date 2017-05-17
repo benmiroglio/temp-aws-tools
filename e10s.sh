@@ -41,6 +41,8 @@ git clone https://github.com/benmiroglio/e10s_analyses.git
 
 echo CONFIGURING ANALYSIS FOR $week
 cd /mnt/e10s_analyses/multi/beta/54
+
+rm -rf $week
 mkdir $week
 
 # get the previous week name
@@ -66,6 +68,8 @@ pyspark
 aws s3 cp --recursive s3://telemetry-test-bucket/bmiroglio/multi-report/ /mnt
 
 cd /mnt/e10s_analyses/multi/beta/54/$week
+
+rm -rf /mnt/data/$week
 mkdir /mnt/data/$week
 mv html /mnt/data/$week/
 cd /mnt
