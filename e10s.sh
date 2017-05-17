@@ -7,6 +7,10 @@ end="$3"
 echo "CLONING REPOS"
 # clone repos to /mnt
 cd /mnt
+
+rm -rf /mnt/telemetry-batch-view
+rm -rf /mnt/temp-aws-tools
+rm -rf /mnt/e10s_analyses
 git clone https://github.com/mozilla/telemetry-batch-view.git
 git clone https://github.com/benmiroglio/temp-aws-tools.git
 git clone https://github.com/benmiroglio/e10s_analyses.git 
