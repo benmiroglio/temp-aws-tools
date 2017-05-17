@@ -16,7 +16,7 @@ def edit_notebook(start, end):
         if len(src) > 0:
             if "RANGE" in src[0]:
                 notebook['cells'][i]['source'][0] = "RANGE = " + '"v' + '_'.join([start, end]) + '"'
-    with open('test.ipynb', 'w') as output:
+    with open('e10sMulti_experiment.ipynb', 'w') as output:
         json.dump(notebook, output)
 
 if __name__ == "__main__":
