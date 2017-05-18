@@ -81,7 +81,7 @@ cd /mnt
 python /mnt/temp-aws-tools/generate_report.py $week
 
 aws s3 cp --recursive /mnt/data s3://telemetry-test-bucket/bmiroglio/multi-report
-aws s3 cp multi-new.Rmd s3://telemetry-test-bucket/bmiroglio/multi-report
+aws s3 cp multi-new.Rmd s3://telemetry-test-bucket/bmiroglio/multi-report/
 
 
 
