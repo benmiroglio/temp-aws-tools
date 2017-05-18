@@ -75,7 +75,7 @@ cd /mnt/e10s_analyses/multi/beta/54/$week
 
 rm -rf /mnt/data/$week
 mkdir /mnt/data/$week
-mv html /mnt/data/$week/
+mv html/* /mnt/data/$week/
 cd /mnt
 python /mnt/temp-aws-tools/generate_report.py $week
 
