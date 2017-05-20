@@ -26,103 +26,220 @@ htmltools::includeHTML('./data/{}/summary.html')
 
 #### Jank {.tabset .tabset-fade .tabset-pills}
 
-##### GC_MAX_PAUSE_MS
+##### GC_MAX_PAUSE_MS {.tabset .tabset-fade}
+
+###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./data/{}/GC_MAX_PAUSE_MS.html')
+htmltools::includeHTML('./data/{}/GC_MAX_PAUSE_MS1-3Tabs.html')
 ```
 
-##### CYCLE_COLLECTOR_MAX_PAUSE
+###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./data/{}/CYCLE_COLLECTOR_MAX_PAUSE.html')
+htmltools::includeHTML('./data/{}/GC_MAX_PAUSE_MS4+-Tabs.html')
 ```
 
-##### INPUT_EVENT_RESPONSE_MS
+##### CYCLE_COLLECTOR_MAX_PAUSE {.tabset .tabset-fade}
+
+###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./data/{}/INPUT_EVENT_RESPONSE_MS.html')
+htmltools::includeHTML('./data/{}/CYCLE_COLLECTOR_MAX_PAUSE1-3Tabs.html')
+```
+
+###### 4+ Tabs
+
+```{r, echo=FALSE}
+htmltools::includeHTML('./data/{}/CYCLE_COLLECTOR_MAX_PAUSE4+-Tabs.html')
+```
+
+##### INPUT_EVENT_RESPONSE_MS {.tabset .tabset-fade}
+
+###### 1-3 Tabs
+
+```{r, echo=FALSE}
+htmltools::includeHTML('./data/{}/INPUT_EVENT_RESPONSE_MS1-3Tabs.html')
+```
+
+###### 4+ Tabs
+
+```{r, echo=FALSE}
+htmltools::includeHTML('./data/{}/INPUT_EVENT_RESPONSE_MS4+-Tabs.html')
 ```
 
 #### Tab Switching {.tabset .tabset-fade .tabset-pills}
 
-##### FX_PAGE_LOAD_MS
+##### FX_PAGE_LOAD_MS {.tabset .tabset-fade}
+
+###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./data/{}/FX_PAGE_LOAD_MS.html')
+htmltools::includeHTML('./data/{}/FX_PAGE_LOAD_MS1-3Tabs.html')
+```
+
+###### 4+ Tabs
+
+```{r, echo=FALSE}
+htmltools::includeHTML('./data/{}/FX_PAGE_LOAD_MS4+-Tabs.html')
 ```
 
 
-##### FX_TAB_REMOTE_NAVIGATION_DELAY_MS
+##### FX_TAB_REMOTE_NAVIGATION_DELAY_MS {.tabset .tabset-fade}
+
+###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./data/{}/FX_TAB_REMOTE_NAVIGATION_DELAY_MS.html')
+htmltools::includeHTML('./data/{}/FX_TAB_REMOTE_NAVIGATION_DELAY_MS1-3Tabs.html')
 ```
 
-##### FX_TAB_SWITCH_SPINNER_VISIBLE_LONG_MS
+###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./data/{}/FX_TAB_SWITCH_SPINNER_VISIBLE_LONG_MS.html')
+htmltools::includeHTML('./data/{}/FX_TAB_REMOTE_NAVIGATION_DELAY_MS4+-Tabs.html')
 ```
 
-##### FX_TAB_SWITCH_SPINNER_VISIBLE_MS
+##### FX_TAB_SWITCH_SPINNER_VISIBLE_LONG_MS {.tabset .tabset-fade}
+
+###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./data/{}/FX_TAB_SWITCH_SPINNER_VISIBLE_MS.html')
+htmltools::includeHTML('./data/{}/FX_TAB_SWITCH_SPINNER_VISIBLE_LONG_MS1-3Tabs.html')
 ```
 
-##### FX_TAB_SWITCH_TOTAL_MS
+###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./data/{}/FX_TAB_SWITCH_TOTAL_MS.html')
+htmltools::includeHTML('./data/{}/FX_TAB_SWITCH_SPINNER_VISIBLE_LONG_MS4+-Tabs.html')
 ```
 
-##### FX_TAB_SWITCH_UPDATE_MS
+##### FX_TAB_SWITCH_SPINNER_VISIBLE_MS {.tabset .tabset-fade}
+
+###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./data/{}/FX_TAB_SWITCH_UPDATE_MS.html')
+htmltools::includeHTML('./data/{}/FX_TAB_SWITCH_SPINNER_VISIBLE_MS1-3Tabs.html')
+```
+
+###### 4+ Tabs
+
+```{r, echo=FALSE}
+htmltools::includeHTML('./data/{}/FX_TAB_SWITCH_SPINNER_VISIBLE_MS4+-Tabs.html')
+```
+##### FX_TAB_SWITCH_TOTAL_MS {.tabset .tabset-fade}
+
+###### 1-3 Tabs
+
+```{r, echo=FALSE}
+htmltools::includeHTML('./data/{}/FX_TAB_SWITCH_TOTAL_MS1-3Tabs.html')
+```
+
+###### 4+ Tabs
+
+```{r, echo=FALSE}
+htmltools::includeHTML('./data/{}/FX_TAB_SWITCH_TOTAL_MS4+-Tabs.html')
+```
+
+##### FX_TAB_SWITCH_UPDATE_MS {.tabset .tabset-fade}
+
+###### 1-3 Tabs
+
+```{r, echo=FALSE}
+htmltools::includeHTML('./data/{}/FX_TAB_SWITCH_UPDATE_MS1-3Tabs.html')
+```
+
+###### 4+ Tabs
+
+```{r, echo=FALSE}
+htmltools::includeHTML('./data/{}/FX_TAB_SWITCH_UPDATE_MS4+-Tabs.html')
 ```
 
 #### Memory Usage {.tabset .tabset-fade .tabset-pills}
 
-##### MEMORY_DISTRIBUTION_AMONG_CONTENT
+##### MEMORY_DISTRIBUTION_AMONG_CONTENT {.tabset .tabset-fade}
+
+###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./data/{}/MEMORY_DISTRIBUTION_AMONG_CONTENT.html')
+htmltools::includeHTML('./data/{}/MEMORY_DISTRIBUTION_AMONG_CONTENT1-3Tabs.html')
 ```
 
-##### MEMORY_TOTAL
+###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./data/{}/MEMORY_TOTAL.html')
+htmltools::includeHTML('./data/{}/MEMORY_DISTRIBUTION_AMONG_CONTENT4+-Tabs.html')
 ```
 
-##### MEMORY_VSIZE_MAX_CONTIGUOUS
+##### MEMORY_TOTAL {.tabset .tabset-fade}
+
+###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./data/{}/MEMORY_VSIZE_MAX_CONTIGUOUS.html')
+htmltools::includeHTML('./data/{}/MEMORY_TOTAL1-3Tabs.html')
 ```
 
+###### 4+ Tabs
+
+```{r, echo=FALSE}
+htmltools::includeHTML('./data/{}/MEMORY_TOTAL4+-Tabs.html')
+```
+
+##### MEMORY_VSIZE_MAX_CONTIGUOUS {.tabset .tabset-fade}
+
+###### 1-3 Tabs
+
+```{r, echo=FALSE}
+htmltools::includeHTML('./data/{}/MEMORY_VSIZE_MAX_CONTIGUOUS1-3Tabs.html')
+```
+
+###### 4+ Tabs
+
+```{r, echo=FALSE}
+htmltools::includeHTML('./data/{}/MEMORY_VSIZE_MAX_CONTIGUOUS4+-Tabs.html')
+```
 #### Slow Scripts {.tabset .tabset-fade .tabset-pills}
 
-##### SLOW_SCRIPT_NOTICE_COUNT
+##### SLOW_SCRIPT_NOTICE_COUNT {.tabset .tabset-fade}
+
+###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./data/{}/SLOW_SCRIPT_NOTICE_COUNT.html')
+htmltools::includeHTML('./data/{}/SLOW_SCRIPT_NOTICE_COUNT1-3Tabs.html')
 ```
 
-##### SLOW_SCRIPT_PAGE_COUNT
+###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./data/{}/SLOW_SCRIPT_PAGE_COUNT.html')
+htmltools::includeHTML('./data/{}/SLOW_SCRIPT_NOTICE_COUNT4+-Tabs.html')
 ```
 
-##### SLOW_SCRIPT_NOTIFY_DELAY
+##### SLOW_SCRIPT_PAGE_COUNT {.tabset .tabset-fade}
+
+###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./data/{}/SLOW_SCRIPT_NOTIFY_DELAY.html')
+htmltools::includeHTML('./data/{}/SLOW_SCRIPT_PAGE_COUNT1-3Tabs.html')
 ```
 
+###### 4+ Tabs
+
+```{r, echo=FALSE}
+htmltools::includeHTML('./data/{}/SLOW_SCRIPT_PAGE_COUNT4+-Tabs.html')
+```
+
+##### SLOW_SCRIPT_NOTIFY_DELAY {.tabset .tabset-fade}
+
+###### 1-3 Tabs
+
+```{r, echo=FALSE}
+htmltools::includeHTML('./data/{}/SLOW_SCRIPT_NOTIFY_DELAY1-3Tabs.html')
+```
+
+###### 4+ Tabs
+
+```{r, echo=FALSE}
+htmltools::includeHTML('./data/{}/SLOW_SCRIPT_NOTIFY_DELAY4+-Tabs.html')
+```
 
 ### Stacks {.tabset .tabset-fade .tabset-pills}
 
