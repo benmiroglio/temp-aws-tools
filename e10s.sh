@@ -1,3 +1,5 @@
+set -e
+
 week="$1"
 start="$2"
 end="$3"
@@ -5,38 +7,47 @@ end="$3"
 echo "CLONING REPOS"
 # clone repos to /mnt
 cd /mnt
+
+rm -rf /mnt/telemetry-batch-view/
+rm -rf /mnt/temp-aws-tools/
+rm -rf /mnt/e10s_analyses/
+
 git clone https://github.com/mozilla/telemetry-batch-view.git
 git clone https://github.com/benmiroglio/temp-aws-tools.git
 git clone https://github.com/benmiroglio/e10s_analyses.git 
 
-# update e10s script
-# (handles edge case for JNothing Error and grabs the submission field)
-cat temp-aws-tools/E10sExperiment.scala > telemetry-batch-view/src/main/scala/com/mozilla/telemetry/views/E10sExperiment.scala
+# # update e10s script
+# # (handles edge case for JNothing Error and grabs the submission field)
+# cat temp-aws-tools/E10sExperiment.scala > telemetry-batch-view/src/main/scala/com/mozilla/telemetry/views/E10sExperiment.scala
 
-echo BUILDING SCALA CODE
+# echo BUILDING SCALA CODE
 
-# build code
-cd telemetry-batch-view && sbt assembly
+# # build code
+# cd telemetry-batch-view && sbt assembly
 
 
 
-echo RUNNING ETL
-# submit ETL job
-spark-submit\
-    --master yarn\
-    --deploy-mode client\
-    --class com.mozilla.telemetry.views.E10sExperimentView\
-    target/scala-2.11/telemetry-batch-view-1.1.jar\
-    --from $start\
-    --to $end\
-    --channel beta\
-    --version 54.0\
-    --experiment multi-webExtensions-beta54-cohorts\
-    --bucket telemetry-parquet
+# echo RUNNING ETL
+# # submit ETL job
+# spark-submit\
+#     --master yarn\
+#     --deploy-mode client\
+#     --class com.mozilla.telemetry.views.E10sExperimentView\
+#     target/scala-2.11/telemetry-batch-view-1.1.jar\
+#     --from $start\
+#     --to $end\
+#     --channel beta\
+#     --version 54.0\
+#     --experiment multi-webExtensions-beta54-cohorts\
+#     --bucket telemetry-parquet
+
+
 
 
 echo CONFIGURING ANALYSIS FOR $week
-cd /home/hadoop/analyses/e10s_analyses/multi/beta/54
+cd /mnt/e10s_analyses/multi/beta/54
+
+rm -rf $week
 mkdir $week
 
 # get the previous week name
@@ -58,17 +69,19 @@ PYSPARK_DRIVER_PYTHON=jupyter
 PYSPARK_DRIVER_PYTHON_OPTS="nbconvert --ExecutePreprocessor.kernel_name=python2 --ExecutePreprocessor.timeout=-1 --log-level=10 --execute e10sMulti_experiment.ipynb --to html --output-dir ./html/" \
 pyspark
 
+
 aws s3 cp --recursive s3://telemetry-test-bucket/bmiroglio/multi-report/ /mnt
 
+cd /mnt/e10s_analyses/multi/beta/54/$week
+
+rm -rf /mnt/data/$week
 mkdir /mnt/data/$week
-mv *.html /mnt/data/$week/
+mv html/* /mnt/data/$week/
 cd /mnt
 python /mnt/temp-aws-tools/generate_report.py $week
 
-# render notebook
-Rscript -e "rmarkdown::render('multi-new.Rmd')"
-
-aws s3 cp multi-new.html s3://telemetry-test-bucket/bmiroglio/reports/
+aws s3 cp --recursive /mnt/data s3://telemetry-test-bucket/bmiroglio/multi-report/
+aws s3 cp multi-new.Rmd s3://telemetry-test-bucket/bmiroglio/multi-report/
 
 
 
