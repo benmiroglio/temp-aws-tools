@@ -1,10 +1,16 @@
 import json
 import sys
+import datetime
 
-def check_params():
-    assert len(sys.argv) == 3, "must specific start and end dates"
-    assert len(sys.argv[1]) == len(sys.argv[2]) == 8, "invalid start or end date"
-    return sys.argv[1], sys.argv[2]
+def update_range(directory):
+    with open(directory + "/last.json") as f:
+        date_range = json.load(f)
+    start, end = date_range['range'][1:].split('_')
+    start = end
+    end = datetime.datetime.strftime(
+                datetime.datetime.strptime(end, '%Y%m%d') + \
+                datetime.timedelta(days=7), '%Y%m%d')
+    return start,end
 
 def edit_notebook(start, end):
     with open('e10sMulti_experiment.ipynb') as f:
@@ -20,6 +26,5 @@ def edit_notebook(start, end):
         json.dump(notebook, output)
 
 if __name__ == "__main__":
-    START, END = check_params()
-    edit_notebook(START, END)
-    
+    print 'done'
+

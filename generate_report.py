@@ -2,9 +2,7 @@ import sys
 import re
 import os
 
-target_week = int(re.sub('[a-z]', '', sys.argv[1]))
-weeks = ['week' + str(i) for i in range(1, target_week+1)][::-1]
-print 
+week = 'week3'
 
 
 def get_text(filename):
@@ -14,6 +12,19 @@ def get_text(filename):
 def write_to_file(contents, filename):
 	with open(filename, 'w') as out:
 		out.write(contents)
+
+def split_tabs(html, fileprefix):
+	current_html = ''
+	for line in html.split('\n'):
+		if "1-3 Tabs" in line:
+			current_html = ''
+		elif "4+ Tabs" in line:
+			write_to_file(current_html, fileprefix + '1-3Tabs.html')
+			current_html = ''
+		else:
+			current_html += line + '\n'
+
+	write_to_file(current_html, fileprefix + '4+-Tabs.html')
 
 def probe_header():
 	return '''
@@ -49,28 +60,29 @@ def reformat_report(filename, directory):
 			if line[:3] == '<h3':
 				print current_probe
 				if current_probe:
-				  write_to_file(current_html, '/'.join([directory, current_probe + '.html']))
+				  split_tabs(current_html, '/'.join([directory, current_probe]))
 				current_probe = line.split('=')[1].split('>')[0].strip('"')
-				current_html = probe_header()
+				current_html = ''
 			elif any_keywords(line) and current_probe:
-				write_to_file(current_html, '/'.join([directory, current_probe + '.html']))
+				split_tabs(current_html, '/'.join([directory, current_probe]))
 
 			else:
-				current_html +=  line 
+				current_html += line 
 				
 
 
-
-with open('multi-new.Rmd', 'w') as new_report:
-	header =  get_text("/mnt/temp-aws-tools/header-markdown-template.md")
-	new_report.write(header)
-	for week in weeks:
-		reformat_report('e10sMulti_experiment.html', 'data/%s' % week)
-		week_body = re.sub("{}", week, get_text("/mnt/temp-aws-tools/weekx-markdown-template.md"))
-		new_report.write(week_body)
-
+reformat_report('e10sMulti_experiment.html', '%s/html' % week)
+with open('mutli-new.Rmd') as current_report:
+	with open('multi-new-temp.Rmd', 'w') as new_report:
+		i = 1
+		for line in current_report:
+			new_report.write(line)
+			if i == 10:
+				week_body = re.sub("{}", week, get_text("/src/temp-aws-tools/weekx-markdown-template.md"))
+				new_report.write(week_body)
 
 print "Done"
+
 
 
 	
