@@ -2,8 +2,8 @@ import sys
 import re
 import os
 
-week = 'week3'
-
+week = sys.argv[1]
+MULTI_DIR='/home/hadoop/analyses/e10s_analyses/multi/'
 
 def get_text(filename):
 	with open(filename) as f:
@@ -12,19 +12,6 @@ def get_text(filename):
 def write_to_file(contents, filename):
 	with open(filename, 'w') as out:
 		out.write(contents)
-
-def split_tabs(html, fileprefix):
-	current_html = ''
-	for line in html.split('\n'):
-		if "1-3 Tabs" in line:
-			current_html = ''
-		elif "4+ Tabs" in line:
-			write_to_file(current_html, fileprefix + '1-3Tabs.html')
-			current_html = ''
-		else:
-			current_html += line + '\n'
-
-	write_to_file(current_html, fileprefix + '4+-Tabs.html')
 
 def probe_header():
 	return '''
@@ -60,29 +47,30 @@ def reformat_report(filename, directory):
 			if line[:3] == '<h3':
 				print current_probe
 				if current_probe:
-				  split_tabs(current_html, '/'.join([directory, current_probe]))
+				  write_to_file(current_html, '/'.join([directory, current_probe + '.html']))
 				current_probe = line.split('=')[1].split('>')[0].strip('"')
-				current_html = ''
+				current_html = probe_header()
 			elif any_keywords(line) and current_probe:
-				split_tabs(current_html, '/'.join([directory, current_probe]))
+				write_to_file(current_html, '/'.join([directory, current_probe + '.html']))
 
 			else:
-				current_html += line 
+				current_html +=  line 
 				
 
 
-reformat_report('e10sMulti_experiment.html', '%s/html' % week)
-with open('mutli-new.Rmd') as current_report:
-	with open('multi-new-temp.Rmd', 'w') as new_report:
-		i = 1
+
+with open(MULTI_DIR + 'meta/e10sMulti_experiment.Rmd') as current_report:
+	reformat_report('e10sMulti_experiment.html', "html")
+	with open('temp.Rmd', 'w') as new_report:
 		for line in current_report:
-			new_report.write(line)
-			if i == 10:
-				week_body = re.sub("{}", week, get_text("/src/temp-aws-tools/weekx-markdown-template.md"))
+			if "# Results {.tabset .tabset-fade }" in line:
+				week_body = re.sub("{}", week, get_text("/home/hadoop/analyses/temp-aws-tools/weekx-markdown-template.md"))
 				new_report.write(week_body)
+			else:
+				new_report.write(line)
 
-print "Done"
 
+print "Success"
 
 
 	
