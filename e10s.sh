@@ -6,11 +6,12 @@ echo "Updating E10s Repo..."
 # clone repos to /mnt
 cd $HOME/analyses/e10s_analyses/
 git pull origin master
-<<<<<<< HEAD
 
-week=$(cat ./multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['week']")
-start=$(cat ./multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['start']")
-end=$(cat ./multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['end']")
+MULTI_DIR="~/analyses/e10s_analyses/multi"
+
+week=$(cat $MULTI_DIR/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['week']")
+start=$(cat $MULTI_DIR/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['start']")
+end=$(cat $MULTI_DIR/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['end']")
 
 
 echo "Running job for $week over the following range: $start-$end"
@@ -52,6 +53,8 @@ spark-submit\
 
 
 
+
+
 echo CONFIGURING ANALYSIS FOR $week
 cd $HOME/analyses/e10s_analyses/multi/beta/54/
 
@@ -78,9 +81,7 @@ PYSPARK_DRIVER_PYTHON_OPTS="nbconvert --ExecutePreprocessor.kernel_name=python2 
 pyspark
 
 
-MULTI_DIR="~/analyses/e10s_analyses/multi"
 
-<<<<<<< HEAD
 
 echo "Generating RMD File and pushing to S3...RMD will be rendered on dashboard1..."
 python $HOME/analyses/temp-aws-tools/generate_report.py $week
