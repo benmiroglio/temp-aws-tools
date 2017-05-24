@@ -25,7 +25,7 @@ def edit_notebook(start, end):
 
 
 def update_params():
-    path = '$HOME/analyses/e10s_analyses/multi/meta/last.json'
+    path = '/home/hadoop/analyses/e10s_analyses/multi/meta/last.json'
     with open(path) as f:
         jobj = json.load(f)
         jobj['week'] = 'week' + str(int(re.sub('[a-z]', '',  jobj['week'])) + 1)
@@ -38,6 +38,6 @@ def update_params():
 
 if __name__ == "__main__":
     START, END = check_params()
-    update_params()
+    #update_params()
     edit_notebook(START, END)
     

@@ -6,6 +6,7 @@ echo "Updating E10s Repo..."
 # clone repos to /mnt
 cd $HOME/analyses/e10s_analyses/
 git pull origin master
+<<<<<<< HEAD
 
 week=$(cat ./multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['week']")
 start=$(cat ./multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['start']")
@@ -30,6 +31,8 @@ echo "Building scala code..."
 
 # build code
 cd /mnt/telemetry-batch-view && sbt assembly
+
+
 
 echo "Running scala job..."
 # submit ETL job
@@ -77,6 +80,7 @@ pyspark
 
 MULTI_DIR="~/analyses/e10s_analyses/multi"
 
+<<<<<<< HEAD
 
 echo "Generating RMD File and pushing to S3...RMD will be rendered on dashboard1..."
 python $HOME/analyses/temp-aws-tools/generate_report.py $week
