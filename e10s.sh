@@ -30,25 +30,24 @@ cat $HOME/analyses/temp-aws-tools/E10sExperiment.scala > /mnt/telemetry-batch-vi
 
 echo "Building scala code..."
 
-# build code
-cd /mnt/telemetry-batch-view && sbt assembly
+# # build code
+# cd /mnt/telemetry-batch-view && sbt assembly
 
 
 
-echo "Running scala job..."
-# submit ETL job
-spark-submit\
-    --master yarn\
-    --deploy-mode client\
-    --class com.mozilla.telemetry.views.E10sExperimentView\
-    target/scala-2.11/telemetry-batch-view-1.1.jar\
-    --from $start\
-    --to $end\
-    --channel beta\
-    --version 54.0\
-    --experiment multi-webExtensions-beta54-cohorts\
-    --bucket telemetry-parquet
-
+# echo "Running scala job..."
+# # submit ETL job
+# spark-submit\
+#     --master yarn\
+#     --deploy-mode client\
+#     --class com.mozilla.telemetry.views.E10sExperimentView\
+#     target/scala-2.11/telemetry-batch-view-1.1.jar\
+#     --from $start\
+#     --to $end\
+#     --channel beta\
+#     --version 54.0\
+#     --experiment multi-webExtensions-beta54-cohorts\
+#     --bucket telemetry-parquet
 
 
 
@@ -75,18 +74,16 @@ python $HOME/analyses/temp-aws-tools/insert_range.py $start $end
 
 echo "Running notebook and converting to HTML..."
 # run noteook and render to html
-time env $environment \
-PYSPARK_DRIVER_PYTHON=jupyter
-PYSPARK_DRIVER_PYTHON_OPTS="nbconvert --ExecutePreprocessor.kernel_name=python2 --ExecutePreprocessor.timeout=-1 --log-level=10 --execute e10sMulti_experiment.ipynb --to html --output-dir ./html/" \
-pyspark
-
-
+# time env $environment \
+# PYSPARK_DRIVER_PYTHON=jupyter
+# PYSPARK_DRIVER_PYTHON_OPTS="nbconvert --ExecutePreprocessor.kernel_name=python2 --ExecutePreprocessor.timeout=-1 --log-level=10 --execute e10sMulti_experiment.ipynb --to html --output-dir ./html/" \
+# pyspark
 
 
 echo "Generating RMD File and pushing to S3...RMD will be rendered on dashboard1..."
 python $HOME/analyses/temp-aws-tools/generate_report.py $week
 
-cp -r $MULTI_DIR/beta/54/$week $HOME/e10s_report/
+cp -r $MULTI_DIR/beta/54/week4 $HOME/e10s_report/
 
 mv temp.Rmd e10sMulti_experiment.Rmd
 cp e10sMulti_experiment.Rmd $HOME/e10s_report/

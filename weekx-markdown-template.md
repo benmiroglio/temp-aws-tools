@@ -31,13 +31,13 @@ htmltools::includeHTML('./{}/html/summary.html')
 ###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/GC_MAX_PAUSE_MS1-3Tabs.html')
+htmltools::includeHTML('./{}/html/GC_MAX_PAUSE_MS.html')
 ```
 
 ###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/GC_MAX_PAUSE_MS4+-Tabs.html')
+htmltools::includeHTML('./{}/html/GC_MAX_PAUSE_MS.html')
 ```
 
 ##### CYCLE_COLLECTOR_MAX_PAUSE {.tabset .tabset-fade}
@@ -45,13 +45,13 @@ htmltools::includeHTML('./{}/html/GC_MAX_PAUSE_MS4+-Tabs.html')
 ###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/CYCLE_COLLECTOR_MAX_PAUSE1-3Tabs.html')
+htmltools::includeHTML('./{}/html/CYCLE_COLLECTOR_MAX_PAUSE.html')
 ```
 
 ###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/CYCLE_COLLECTOR_MAX_PAUSE4+-Tabs.html')
+htmltools::includeHTML('./{}/html/CYCLE_COLLECTOR_MAX_PAUSE.html')
 ```
 
 ##### INPUT_EVENT_RESPONSE_MS {.tabset .tabset-fade}
@@ -59,13 +59,13 @@ htmltools::includeHTML('./{}/html/CYCLE_COLLECTOR_MAX_PAUSE4+-Tabs.html')
 ###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/INPUT_EVENT_RESPONSE_MS1-3Tabs.html')
+htmltools::includeHTML('./{}/html/INPUT_EVENT_RESPONSE_MS.html')
 ```
 
 ###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/INPUT_EVENT_RESPONSE_MS4+-Tabs.html')
+htmltools::includeHTML('./{}/html/INPUT_EVENT_RESPONSE_MS.html')
 ```
 
 #### Tab Switching {.tabset .tabset-fade .tabset-pills}
@@ -75,13 +75,13 @@ htmltools::includeHTML('./{}/html/INPUT_EVENT_RESPONSE_MS4+-Tabs.html')
 ###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/FX_PAGE_LOAD_MS1-3Tabs.html')
+htmltools::includeHTML('./{}/html/FX_PAGE_LOAD_MS.html')
 ```
 
 ###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/FX_PAGE_LOAD_MS4+-Tabs.html')
+htmltools::includeHTML('./{}/html/FX_PAGE_LOAD_MS.html')
 ```
 
 
@@ -90,13 +90,13 @@ htmltools::includeHTML('./{}/html/FX_PAGE_LOAD_MS4+-Tabs.html')
 ###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/FX_TAB_REMOTE_NAVIGATION_DELAY_MS1-3Tabs.html')
+htmltools::includeHTML('./{}/html/FX_TAB_REMOTE_NAVIGATION_DELAY_MS.html')
 ```
 
 ###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/FX_TAB_REMOTE_NAVIGATION_DELAY_MS4+-Tabs.html')
+htmltools::includeHTML('./{}/html/FX_TAB_REMOTE_NAVIGATION_DELAY_MS.html')
 ```
 
 ##### FX_TAB_SWITCH_SPINNER_VISIBLE_LONG_MS {.tabset .tabset-fade}
@@ -104,13 +104,13 @@ htmltools::includeHTML('./{}/html/FX_TAB_REMOTE_NAVIGATION_DELAY_MS4+-Tabs.html'
 ###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_SPINNER_VISIBLE_LONG_MS1-3Tabs.html')
+htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_SPINNER_VISIBLE_LONG_MS.html')
 ```
 
 ###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_SPINNER_VISIBLE_LONG_MS4+-Tabs.html')
+htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_SPINNER_VISIBLE_LONG_MS.html')
 ```
 
 ##### FX_TAB_SWITCH_SPINNER_VISIBLE_MS {.tabset .tabset-fade}
@@ -118,26 +118,26 @@ htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_SPINNER_VISIBLE_LONG_MS4+-Tabs.h
 ###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_SPINNER_VISIBLE_MS1-3Tabs.html')
+htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_SPINNER_VISIBLE_MS.html')
 ```
 
 ###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_SPINNER_VISIBLE_MS4+-Tabs.html')
+htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_SPINNER_VISIBLE_MS.html')
 ```
 ##### FX_TAB_SWITCH_TOTAL_MS {.tabset .tabset-fade}
 
 ###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_TOTAL_MS1-3Tabs.html')
+htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_TOTAL_MS.html')
 ```
 
 ###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_TOTAL_MS4+-Tabs.html')
+htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_TOTAL_MS.html')
 ```
 
 ##### FX_TAB_SWITCH_UPDATE_MS {.tabset .tabset-fade}
@@ -145,13 +145,13 @@ htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_TOTAL_MS4+-Tabs.html')
 ###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_UPDATE_MS1-3Tabs.html')
+htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_UPDATE_MS.html')
 ```
 
 ###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_UPDATE_MS4+-Tabs.html')
+htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_UPDATE_MS.html')
 ```
 
 #### Memory Usage {.tabset .tabset-fade .tabset-pills}
@@ -161,13 +161,13 @@ htmltools::includeHTML('./{}/html/FX_TAB_SWITCH_UPDATE_MS4+-Tabs.html')
 ###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/MEMORY_DISTRIBUTION_AMONG_CONTENT1-3Tabs.html')
+htmltools::includeHTML('./{}/html/MEMORY_DISTRIBUTION_AMONG_CONTENT.html')
 ```
 
 ###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/MEMORY_DISTRIBUTION_AMONG_CONTENT4+-Tabs.html')
+htmltools::includeHTML('./{}/html/MEMORY_DISTRIBUTION_AMONG_CONTENT.html')
 ```
 
 ##### MEMORY_TOTAL {.tabset .tabset-fade}
@@ -175,13 +175,13 @@ htmltools::includeHTML('./{}/html/MEMORY_DISTRIBUTION_AMONG_CONTENT4+-Tabs.html'
 ###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/MEMORY_TOTAL1-3Tabs.html')
+htmltools::includeHTML('./{}/html/MEMORY_TOTAL.html')
 ```
 
 ###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/MEMORY_TOTAL4+-Tabs.html')
+htmltools::includeHTML('./{}/html/MEMORY_TOTAL.html')
 ```
 
 ##### MEMORY_VSIZE_MAX_CONTIGUOUS {.tabset .tabset-fade}
@@ -189,13 +189,13 @@ htmltools::includeHTML('./{}/html/MEMORY_TOTAL4+-Tabs.html')
 ###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/MEMORY_VSIZE_MAX_CONTIGUOUS1-3Tabs.html')
+htmltools::includeHTML('./{}/html/MEMORY_VSIZE_MAX_CONTIGUOUS.html')
 ```
 
 ###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/MEMORY_VSIZE_MAX_CONTIGUOUS4+-Tabs.html')
+htmltools::includeHTML('./{}/html/MEMORY_VSIZE_MAX_CONTIGUOUS.html')
 ```
 #### Slow Scripts {.tabset .tabset-fade .tabset-pills}
 
@@ -204,13 +204,13 @@ htmltools::includeHTML('./{}/html/MEMORY_VSIZE_MAX_CONTIGUOUS4+-Tabs.html')
 ###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/SLOW_SCRIPT_NOTICE_COUNT1-3Tabs.html')
+htmltools::includeHTML('./{}/html/SLOW_SCRIPT_NOTICE_COUNT.html')
 ```
 
 ###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/SLOW_SCRIPT_NOTICE_COUNT4+-Tabs.html')
+htmltools::includeHTML('./{}/html/SLOW_SCRIPT_NOTICE_COUNT.html')
 ```
 
 ##### SLOW_SCRIPT_PAGE_COUNT {.tabset .tabset-fade}
@@ -218,13 +218,13 @@ htmltools::includeHTML('./{}/html/SLOW_SCRIPT_NOTICE_COUNT4+-Tabs.html')
 ###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/SLOW_SCRIPT_PAGE_COUNT1-3Tabs.html')
+htmltools::includeHTML('./{}/html/SLOW_SCRIPT_PAGE_COUNT.html')
 ```
 
 ###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/SLOW_SCRIPT_PAGE_COUNT4+-Tabs.html')
+htmltools::includeHTML('./{}/html/SLOW_SCRIPT_PAGE_COUNT.html')
 ```
 
 ##### SLOW_SCRIPT_NOTIFY_DELAY {.tabset .tabset-fade}
@@ -232,13 +232,13 @@ htmltools::includeHTML('./{}/html/SLOW_SCRIPT_PAGE_COUNT4+-Tabs.html')
 ###### 1-3 Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/SLOW_SCRIPT_NOTIFY_DELAY1-3Tabs.html')
+htmltools::includeHTML('./{}/html/SLOW_SCRIPT_NOTIFY_DELAY.html')
 ```
 
 ###### 4+ Tabs
 
 ```{r, echo=FALSE}
-htmltools::includeHTML('./{}/html/SLOW_SCRIPT_NOTIFY_DELAY4+-Tabs.html')
+htmltools::includeHTML('./{}/html/SLOW_SCRIPT_NOTIFY_DELAY.html')
 ```
 
 ### Stacks {.tabset .tabset-fade .tabset-pills}
