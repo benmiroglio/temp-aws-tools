@@ -7,11 +7,11 @@ echo "Updating E10s Repo..."
 cd $HOME/analyses/e10s_analyses/
 git pull origin master
 
-MULTI_DIR="~/analyses/e10s_analyses/multi"
+MULTI_DIR="$HOME/analyses/e10s_analyses/multi"
 
-week=$(cat $MULTI_DIR/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['week']")
-start=$(cat $MULTI_DIR/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['start']")
-end=$(cat $MULTI_DIR/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['end']")
+week=$(cat ~/analyses/e10s_analyses/multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['week']")
+start=$(cat ~/analyses/e10s_analyses/multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['start']")
+end=$(cat ~/analyses/e10s_analyses/multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['end']")
 
 
 echo "Running job for $week over the following range: $start-$end"
@@ -28,9 +28,9 @@ git pull origin master
 # (handles edge case for JNothing Error and grabs the submission field)
 cat $HOME/analyses/temp-aws-tools/E10sExperiment.scala > /mnt/telemetry-batch-view/src/main/scala/com/mozilla/telemetry/views/E10sExperiment.scala
 
-echo "Building scala code..."
+# echo "Building scala code..."
 
-# # build code
+# # # build code
 # cd /mnt/telemetry-batch-view && sbt assembly
 
 
@@ -73,17 +73,20 @@ echo "Updating date range in notebook..."
 python $HOME/analyses/temp-aws-tools/insert_range.py $start $end
 
 echo "Running notebook and converting to HTML..."
-# run noteook and render to html
-# time env $environment \
-# PYSPARK_DRIVER_PYTHON=jupyter
-# PYSPARK_DRIVER_PYTHON_OPTS="nbconvert --ExecutePreprocessor.kernel_name=python2 --ExecutePreprocessor.timeout=-1 --log-level=10 --execute e10sMulti_experiment.ipynb --to html --output-dir ./html/" \
-# pyspark
+time env $environment \
+PYSPARK_DRIVER_PYTHON=jupyter
+PYSPARK_DRIVER_PYTHON_OPTS="nbconvert --ExecutePreprocessor.kernel_name=python2 --ExecutePreprocessor.timeout=-1 --log-level=10 --execute e10sMulti_experiment.ipynb --to html --output-dir ./html/" \
+pyspark
 
 
 echo "Generating RMD File and pushing to S3...RMD will be rendered on dashboard1..."
+pwd
 python $HOME/analyses/temp-aws-tools/generate_report.py $week
 
-cp -r $MULTI_DIR/beta/54/week4 $HOME/e10s_report/
+
+MULTI_DIR="$HOME/analyses/e10s_analyses/multi"
+week=$(cat ~/analyses/e10s_analyses/multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['week']")
+cp -r $MULTI_DIR/beta/54/$week $HOME/e10s_report/
 
 mv temp.Rmd e10sMulti_experiment.Rmd
 cp e10sMulti_experiment.Rmd $HOME/e10s_report/
