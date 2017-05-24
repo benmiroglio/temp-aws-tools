@@ -83,9 +83,6 @@ echo "Generating RMD File and pushing to S3...RMD will be rendered on dashboard1
 pwd
 python $HOME/analyses/temp-aws-tools/generate_report.py $week
 
-
-MULTI_DIR="$HOME/analyses/e10s_analyses/multi"
-week=$(cat ~/analyses/e10s_analyses/multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['week']")
 cp -r $MULTI_DIR/beta/54/$week $HOME/e10s_report/
 
 mv temp.Rmd e10sMulti_experiment.Rmd
