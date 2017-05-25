@@ -66,6 +66,7 @@ with open(MULTI_DIR + 'meta/e10sMulti_experiment.Rmd') as current_report:
 			if "# Results {.tabset .tabset-fade }" in line:
 				week_body = re.sub("{}", week, get_text("/home/hadoop/analyses/temp-aws-tools/weekx-markdown-template.md"))
 				new_report.write(week_body)
+                                break
 			else:
 				new_report.write(line)
 
