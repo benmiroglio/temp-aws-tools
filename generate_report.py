@@ -62,12 +62,12 @@ def reformat_report(filename, directory):
 reformat_report('e10sMulti_experiment.html', "html")
 with open('temp.Rmd', 'w') as new_report:
     header = '''
-    ---
-    title: "Multi"
-    output: 
-      html_document:
-        theme: cosmo
-    ---
+---
+title: "Multi"
+output: 
+  html_document:
+    theme: cosmo
+---
     '''
     new_report.write(header + '\n')
     week_body = re.sub("{}", week, get_text("/home/hadoop/analyses/temp-aws-tools/weekx-markdown-template.md"))
