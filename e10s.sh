@@ -2,7 +2,7 @@ set -e
 
 
 
-echo "Updating E10s Repo..."
+echo "\n\nUpdating E10s Repo...\n\n"
 # clone repos to /mnt
 cd $HOME/analyses/e10s_analyses/
 git pull origin master
@@ -16,7 +16,7 @@ end=$(cat ~/analyses/e10s_analyses/multi/meta/last.json | python -c "import sys,
 
 echo "Running job for $week over the following range: $start-$end"
 
-echo "Cloning telemetry-batch-view..."
+echo "\n\nCloning telemetry-batch-view...\n\n"
 rm -rf /mnt/telemetry-batch-view/
 cd /mnt/
 git clone https://github.com/benmiroglio/telemetry-batch-view.git
@@ -28,30 +28,26 @@ git pull origin master
 # (handles edge case for JNothing Error and grabs the submission field)
 cat $HOME/analyses/temp-aws-tools/E10sExperiment.scala > /mnt/telemetry-batch-view/src/main/scala/com/mozilla/telemetry/views/E10sExperiment.scala
 
-# echo "Building scala code..."
+echo "\n\nBuilding scala code...\n\n"
 
-# # # build code
-# cd /mnt/telemetry-batch-view && sbt assembly
-
-
-
-# echo "Running scala job..."
-# # submit ETL job
-# spark-submit\
-#     --master yarn\
-#     --deploy-mode client\
-#     --class com.mozilla.telemetry.views.E10sExperimentView\
-#     target/scala-2.11/telemetry-batch-view-1.1.jar\
-#     --from $start\
-#     --to $end\
-#     --channel beta\
-#     --version 54.0\
-#     --experiment multi-webExtensions-beta54-cohorts\
-#     --bucket telemetry-parquet
+# build code
+cd /mnt/telemetry-batch-view && sbt assembly
 
 
 
-
+echo "Running scala job..."
+# submit ETL job
+spark-submit\
+    --master yarn\
+    --deploy-mode client\
+    --class com.mozilla.telemetry.views.E10sExperimentView\
+    target/scala-2.11/telemetry-batch-view-1.1.jar\
+    --from $start\
+    --to $end\
+    --channel beta\
+    --version 54.0\
+    --experiment multi-webExtensions-beta54-cohorts\
+    --bucket telemetry-parquet
 
 
 echo CONFIGURING ANALYSIS FOR $week
@@ -65,7 +61,7 @@ mkdir $week
 cp $HOME/analyses/e10s_analyses/multi/meta/e10sMulti_experiment.ipynb $week/
 cd $week
 
-echo "Running notebook in the following directory:"
+echo "\n\nRunning notebook in the following directory:\n\n"
 pwd
 
 # insert new date range into notebook
@@ -79,7 +75,7 @@ PYSPARK_DRIVER_PYTHON_OPTS="nbconvert --ExecutePreprocessor.kernel_name=python2 
 pyspark
 
 
-echo "Generating RMD File and pushing to S3...RMD will be rendered on dashboard1..."
+echo "\n\nGenerating RMD File and pushing to S3...RMD will be rendered on dashboard1...\n\n"
 pwd
 python $HOME/analyses/temp-aws-tools/generate_report.py $week
 
