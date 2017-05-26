@@ -59,16 +59,19 @@ def reformat_report(filename, directory):
 
 
 
-with open(MULTI_DIR + 'meta/e10sMulti_experiment.Rmd') as current_report:
-	reformat_report('e10sMulti_experiment.html', "html")
-	with open('temp.Rmd', 'w') as new_report:
-		for line in current_report:
-			if "# Results {.tabset .tabset-fade }" in line:
-				week_body = re.sub("{}", week, get_text("/home/hadoop/analyses/temp-aws-tools/weekx-markdown-template.md"))
-				new_report.write(week_body)
-			else:
-				new_report.write(line)
-
+reformat_report('e10sMulti_experiment.html', "html")
+with open('temp.Rmd', 'w') as new_report:
+    header = '''
+---
+title: "Multi"
+output: 
+  html_document:
+    theme: cosmo
+---
+    '''
+    new_report.write(header + '\n')
+    week_body = re.sub("{}", week, get_text("/home/hadoop/analyses/temp-aws-tools/weekx-markdown-template.md"))
+    new_report.write(week_body)
 
 print "Success"
 

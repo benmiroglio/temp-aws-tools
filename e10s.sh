@@ -2,8 +2,7 @@ set -e
 
 
 
-echo "Updating E10s Repo..."
-# clone repos to /mnt
+echo "Updating E10s Repos..."
 cd $HOME/analyses/e10s_analyses/
 git pull origin master
 
@@ -12,21 +11,19 @@ git pull origin master
 
 MULTI_DIR="$HOME/analyses/e10s_analyses/multi"
 
-week=$(cat ~/analyses/e10s_analyses/multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['week']")
-start=$(cat ~/analyses/e10s_analyses/multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['start']")
-end=$(cat ~/analyses/e10s_analyses/multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['end']")
+week=$(cat $HOME/analyses/e10s_analyses/multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['week']")
+start=$(cat $HOME/analyses/e10s_analyses/multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['start']")
+end=$(cat $HOME/analyses/e10s_analyses/multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['end']")
 
-
+echo "===================================================================="
 echo "Running job for $week over the following range: $start-$end"
+echo "===================================================================="
 
-echo "Cloning telemetry-batch-view..."
+echo "\n\nCloning telemetry-batch-view...\n\n"
 rm -rf /mnt/telemetry-batch-view/
 cd /mnt/
 git clone https://github.com/benmiroglio/telemetry-batch-view.git
 
-echo "Updating temp-aws-tools Repo..."
-cd $HOME/analyses/temp-aws-tools
-git pull origin master
 # update e10s script
 # (handles edge case for JNothing Error and grabs the submission field)
 cat $HOME/analyses/temp-aws-tools/E10sExperiment.scala > /mnt/telemetry-batch-view/src/main/scala/com/mozilla/telemetry/views/E10sExperiment.scala
@@ -35,8 +32,6 @@ echo "Building scala code..."
 
 # # build code
 cd /mnt/telemetry-batch-view && sbt assembly
-
-
 
 echo "Running scala job..."
 # submit ETL job
@@ -52,23 +47,18 @@ spark-submit\
     --experiment multi-webExtensions-beta54-cohorts\
     --bucket telemetry-parquet
 
-
-
-
-
-
-echo CONFIGURING ANALYSIS FOR $week
+echo Configuring analyses FOR $week
 cd $HOME/analyses/e10s_analyses/multi/beta/54/
 
 rm -rf $week
 mkdir $week
 
 
-
+# copy template notebook to current week dir
 cp $HOME/analyses/e10s_analyses/multi/meta/e10sMulti_experiment.ipynb $week/
 cd $week
 
-echo "Running notebook in the following directory:"
+echo "\n\nRunning notebook in the following directory:\n\n"
 pwd
 
 # insert new date range into notebook
@@ -84,6 +74,7 @@ pyspark
 
 
 echo "Generating RMD File and pushing to S3...RMD will be rendered on dashboard1..."
+
 pwd
 python $HOME/analyses/temp-aws-tools/generate_report.py $week
 
