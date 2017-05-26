@@ -1,6 +1,6 @@
 set -e
 
-
+echo "V3 of e10s.sh"
 
 echo "Updating E10s Repos..."
 cd $HOME/analyses/e10s_analyses/
