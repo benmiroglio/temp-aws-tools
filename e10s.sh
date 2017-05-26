@@ -7,6 +7,9 @@ echo "Updating E10s Repo..."
 cd $HOME/analyses/e10s_analyses/
 git pull origin master
 
+cd $HOME/analyses/temp-aws-tools/
+git pull origin master
+
 MULTI_DIR="$HOME/analyses/e10s_analyses/multi"
 
 week=$(cat ~/analyses/e10s_analyses/multi/meta/last.json | python -c "import sys, json; print json.load(sys.stdin)['week']")
@@ -28,26 +31,26 @@ git pull origin master
 # (handles edge case for JNothing Error and grabs the submission field)
 cat $HOME/analyses/temp-aws-tools/E10sExperiment.scala > /mnt/telemetry-batch-view/src/main/scala/com/mozilla/telemetry/views/E10sExperiment.scala
 
-# echo "Building scala code..."
+echo "Building scala code..."
 
-# # # build code
-# cd /mnt/telemetry-batch-view && sbt assembly
+# # build code
+cd /mnt/telemetry-batch-view && sbt assembly
 
 
 
-# echo "Running scala job..."
-# # submit ETL job
-# spark-submit\
-#     --master yarn\
-#     --deploy-mode client\
-#     --class com.mozilla.telemetry.views.E10sExperimentView\
-#     target/scala-2.11/telemetry-batch-view-1.1.jar\
-#     --from $start\
-#     --to $end\
-#     --channel beta\
-#     --version 54.0\
-#     --experiment multi-webExtensions-beta54-cohorts\
-#     --bucket telemetry-parquet
+echo "Running scala job..."
+# submit ETL job
+spark-submit\
+    --master yarn\
+    --deploy-mode client\
+    --class com.mozilla.telemetry.views.E10sExperimentView\
+    target/scala-2.11/telemetry-batch-view-1.1.jar\
+    --from $start\
+    --to $end\
+    --channel beta\
+    --version 54.0\
+    --experiment multi-webExtensions-beta54-cohorts\
+    --bucket telemetry-parquet
 
 
 
@@ -77,6 +80,7 @@ time env $environment \
 PYSPARK_DRIVER_PYTHON=jupyter
 PYSPARK_DRIVER_PYTHON_OPTS="nbconvert --ExecutePreprocessor.kernel_name=python2 --ExecutePreprocessor.timeout=-1 --log-level=10 --execute e10sMulti_experiment.ipynb --to html --output-dir ./html/" \
 pyspark
+
 
 
 echo "Generating RMD File and pushing to S3...RMD will be rendered on dashboard1..."
