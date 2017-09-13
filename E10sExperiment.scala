@@ -33,8 +33,7 @@ object E10sExperimentView {
 
 
   private class Opts(args: Array[String]) extends ScallopConf(args) {
-    val from = opt[String]("from", descr = "From submission date", required = true)
-    val to = opt[String]("to", descr = "To submission date", required = true)
+    val date = opt[String]("date", descr = "submission date", required = true)
     val channel = opt[String]("channel", descr = "channel", required = true)
     val version = opt[String]("version", descr = "version", required = true)
     val experimentId = opt[String]("experiment", descr = "experiment", required = true)
@@ -44,8 +43,7 @@ object E10sExperimentView {
 
   def main(args: Array[String]): Unit = {
     val opts = new Opts(args)
-    val from = opts.from()
-    val to = opts.to()
+    val date = opts.date()
     val channel = opts.channel()
     val version = opts.version()
 
@@ -77,7 +75,7 @@ object E10sExperimentView {
   private def run(opts: Opts, messages: RDD[Message]) {
     val experimentId = opts.experimentId().replaceAll("-", "_")
     val clsName = uncamelize(this.getClass.getSimpleName.replace("$", ""))
-    val prefix = s"${clsName}/${experimentId}/v${opts.from()}_${opts.to()}"
+    val prefix = s"${clsName}/${experimentId}/submission_date_s3=${opts.date()}"
     val outputBucket = opts.outputBucket()
 
     require(S3Store.isPrefixEmpty(outputBucket, prefix), s"s3://${outputBucket}/${prefix} already exists!")
