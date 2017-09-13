@@ -61,7 +61,7 @@ object E10sExperimentView {
       }.where("appName") {
         case "Firefox" => true
       }.where("submissionDate") {
-        case date if date <= to && date >= from => true
+        case d if d == date => true
       }.where("appUpdateChannel") {
         case x if x == channel => true
       }.where("appVersion") {
